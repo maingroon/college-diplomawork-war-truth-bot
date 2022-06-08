@@ -1,0 +1,19 @@
+telegram:
+  api-url: 'https://api.telegram.org/'
+  bot:
+    username: '@war_truth_bot'
+    token: '5246491046:AAGY64sqoIhFlhbyqo9OXx89eKjPLGyJLq4'
+    path: 'https://war-truth-bot.herokuapp.com/'
+
+spring:
+  jpa:
+    database: 'POSTGRESQL'
+    show-sql: 'true'
+    hibernate:
+      ddl-auto: 'update'
+  datasource:
+    platform: 'postgres'
+    url: 'jdbc:postgresql://ec2-52-214-23-110.eu-west-1.compute.amazonaws.com:5432/deds9gqlco5560'
+    username: 'kanynpldywuhog'
+    password: '90c9879c0517a2e08d2b8e85a3eae6fbc18dd58309e3af3f7b592e767af38169'
+    driverClassName: 'org.postgresql.Driver'
