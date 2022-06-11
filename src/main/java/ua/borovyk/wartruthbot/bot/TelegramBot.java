@@ -61,17 +61,20 @@ public class TelegramBot extends SpringWebhookBot {
             return handleUpdate(update);
         } catch (Exception e) {
             log.error(e.toString());
-//            return new SendMessage(update.getMessage().getChatId().toString(), "Щось пішло не так...");
             return null;
         }
     }
 
     private BotApiMethod<?> handleUpdate(Update update) {
+        log.info("Update handling...");
         if (update.hasMyChatMember()) {
+            log.info("in handleAction");
             return actionHandler.handleAction(update.getMyChatMember());
         } else if (update.hasCallbackQuery()) {
+            log.info("in handleCallback");
             return callbackHandler.handleCallback(update.getCallbackQuery());
         } else if (update.hasMessage()) {
+            log.info("in handleMessage");
             return messageHandler.handleMessage(update.getMessage());
         }
         return null;
