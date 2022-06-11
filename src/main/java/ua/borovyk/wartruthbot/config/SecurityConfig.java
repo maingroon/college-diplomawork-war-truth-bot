@@ -10,6 +10,7 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 
 @Configuration
 @AllArgsConstructor
@@ -21,10 +22,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/bot/api/**").permitAll()
+                .antMatchers("/").permitAll()
                 .anyRequest().authenticated()
                 .and().formLogin()
-                .loginPage("/cp/login").permitAll();
+                .loginPage("/cp/login").permitAll()
+                .and()
+                .csrf().disable();
     }
 
 
