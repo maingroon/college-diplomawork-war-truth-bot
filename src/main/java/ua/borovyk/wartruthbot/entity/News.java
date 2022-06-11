@@ -24,6 +24,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.Table;
 import java.time.LocalDateTime;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 @Getter
@@ -62,5 +63,18 @@ public class News {
     @Enumerated(EnumType.STRING)
     @Column(name = "topic", nullable = false)
     Set<NewsTopic> topics = new HashSet<>();
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        News news = (News) o;
+        return Objects.equals(id, news.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
+    }
 
 }

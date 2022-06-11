@@ -32,11 +32,11 @@
             <version>2.6.7</version>
         </dependency>
 
-<!--        <dependency>-->
-<!--            <groupId>org.springframework.boot</groupId>-->
-<!--            <artifactId>spring-boot-starter-security</artifactId>-->
-<!--            <version>2.6.7</version>-->
-<!--        </dependency>-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+            <version>2.6.7</version>
+        </dependency>
 
         <dependency>
             <groupId>org.telegram</groupId>
@@ -55,6 +55,12 @@
             <artifactId>lombok</artifactId>
             <version>1.18.24</version>
             <scope>compile</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.thymeleaf</groupId>
+            <artifactId>thymeleaf-spring5</artifactId>
+            <version>3.0.15.RELEASE</version>
         </dependency>
 
         <dependency>

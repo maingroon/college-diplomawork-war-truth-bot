@@ -1,17 +1,22 @@
 package ua.borovyk.wartruthbot.controller;
 
+import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
+import lombok.experimental.FieldDefaults;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.telegram.telegrambots.meta.api.methods.BotApiMethod;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import ua.borovyk.wartruthbot.bot.TelegramBot;
 
 @RestController
+@RequestMapping("/bot/api")
 @AllArgsConstructor
-public class WebhookController {
-    private final TelegramBot telegramBot;
+@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
+public class BotApiController {
+    TelegramBot telegramBot;
 
     @PostMapping("/")
     public BotApiMethod<?> onUpdateReceived(@RequestBody Update update) {

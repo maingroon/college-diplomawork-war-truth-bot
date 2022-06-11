@@ -3,7 +3,7 @@ telegram:
   bot:
     username: '@war_truth_bot'
     token: '5246491046:AAGY64sqoIhFlhbyqo9OXx89eKjPLGyJLq4'
-    path: 'https://war-truth-bot.herokuapp.com/'
+    path: 'https://war-truth-bot.herokuapp.com/bot/api'
 
 spring:
   jpa:
