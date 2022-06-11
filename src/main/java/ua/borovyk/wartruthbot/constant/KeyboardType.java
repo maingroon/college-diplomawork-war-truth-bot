@@ -9,6 +9,7 @@ import lombok.experimental.FieldDefaults;
 public enum KeyboardType {
 
     MAIN,
+    QUESTION,
     SETTINGS,
 
 }

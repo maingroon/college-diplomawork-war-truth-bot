@@ -20,65 +20,75 @@ public class KeyboardHolder {
     static final Map<KeyboardType, ReplyKeyboardMarkup> keyboards = new HashMap<>();
 
     public static ReplyKeyboardMarkup getKeyboardByType(KeyboardType type) {
-        return switch (type) {
-            case MAIN -> getMainKeyboard();
-            case SETTINGS -> getSettingsKeyboard();
-        };
+        if (!keyboards.containsKey(type)) {
+            switch (type) {
+                case MAIN -> createMainKeyboard();
+                case QUESTION -> createQuestionKeyboard();
+                case SETTINGS -> createSettingsKeyboard();
+            }
+        }
+        return keyboards.get(type);
     }
 
-    private static ReplyKeyboardMarkup getMainKeyboard() {
-        if (!keyboards.containsKey(KeyboardType.MAIN)) {
-            var row1 = new KeyboardRow();
-            row1.add(readProperty("main.button.psychological.name"));
-            row1.add(readProperty("main.button.dictionary.name"));
-            var row2 = new KeyboardRow();
-            row2.add(readProperty("main.button.testing.name"));
-            row2.add(readProperty("main.button.video.name"));
-            var row3 = new KeyboardRow();
-            row3.add(readProperty("main.button.safety.name"));
-            row3.add(readProperty("main.button.journalism.name"));
-            var row4 = new KeyboardRow();
-            row4.add(readProperty("main.button.displaced.name"));
-            row4.add(readProperty("main.button.ato.name"));
-            var row5 = new KeyboardRow();
-            row5.add(readProperty("main.button.about.name"));
-            row5.add(readProperty("main.button.settings.name"));
-            var keyboardRows = List.of(row1, row2, row3, row4, row5);
+    private static void createMainKeyboard() {
+        var row1 = new KeyboardRow();
+        row1.add(readProperty("main.button.psychological.name"));
+        row1.add(readProperty("main.button.dictionary.name"));
+        var row2 = new KeyboardRow();
+        row2.add(readProperty("main.button.testing.name"));
+        row2.add(readProperty("main.button.video.name"));
+        var row3 = new KeyboardRow();
+        row3.add(readProperty("main.button.safety.name"));
+        row3.add(readProperty("main.button.journalism.name"));
+        var row4 = new KeyboardRow();
+        row4.add(readProperty("main.button.displaced.name"));
+        row4.add(readProperty("main.button.question.name"));
+        var row5 = new KeyboardRow();
+        row5.add(readProperty("main.button.settings.name"));
+        row5.add(readProperty("main.button.about.name"));
+        var keyboardRows = List.of(row1, row2, row3, row4, row5);
 
-            var mainKeyboard = new ReplyKeyboardMarkup();
-            mainKeyboard.setKeyboard(keyboardRows);
-            mainKeyboard.setSelective(true);
-            mainKeyboard.setResizeKeyboard(true);
-            mainKeyboard.setOneTimeKeyboard(false);
+        var mainKeyboard = new ReplyKeyboardMarkup();
+        mainKeyboard.setKeyboard(keyboardRows);
+        mainKeyboard.setSelective(true);
+        mainKeyboard.setResizeKeyboard(true);
+        mainKeyboard.setOneTimeKeyboard(false);
 
-            keyboards.put(KeyboardType.MAIN, mainKeyboard);
-        }
-
-        return keyboards.get(KeyboardType.MAIN);
+        keyboards.put(KeyboardType.MAIN, mainKeyboard);
     }
 
-    private static ReplyKeyboardMarkup getSettingsKeyboard() {
-        if (!keyboards.containsKey(KeyboardType.SETTINGS)) {
-            var row1 = new KeyboardRow();
-            row1.add(readProperty("settings.button.add.topic.name"));
-            row1.add(readProperty("settings.button.add.region.name"));
-            var row2 = new KeyboardRow();
-            row2.add(readProperty("settings.button.remove.topic.name"));
-            row2.add(readProperty("settings.button.remove.region.name"));
-            var row3 = new KeyboardRow();
-            row3.add(readProperty("settings.button.back.name"));
-            var keyboardRows = List.of(row1, row2, row3);
+    private static void createQuestionKeyboard() {
+        var row1 = new KeyboardRow();
+        row1.add(readProperty("question.button.back.name"));
+        var keyboardRows = List.of(row1);
 
-            var mainInformationKeyboard = new ReplyKeyboardMarkup();
-            mainInformationKeyboard.setKeyboard(keyboardRows);
-            mainInformationKeyboard.setSelective(true);
-            mainInformationKeyboard.setResizeKeyboard(true);
-            mainInformationKeyboard.setOneTimeKeyboard(false);
+        var questionKeyboard = new ReplyKeyboardMarkup();
+        questionKeyboard.setKeyboard(keyboardRows);
+        questionKeyboard.setSelective(true);
+        questionKeyboard.setResizeKeyboard(true);
+        questionKeyboard.setOneTimeKeyboard(false);
 
-            keyboards.put(KeyboardType.SETTINGS, mainInformationKeyboard);
-        }
+        keyboards.put(KeyboardType.QUESTION, questionKeyboard);
+    }
 
-        return keyboards.get(KeyboardType.SETTINGS);
+    private static void createSettingsKeyboard() {
+        var row1 = new KeyboardRow();
+        row1.add(readProperty("settings.button.add.topic.name"));
+        row1.add(readProperty("settings.button.add.region.name"));
+        var row2 = new KeyboardRow();
+        row2.add(readProperty("settings.button.remove.topic.name"));
+        row2.add(readProperty("settings.button.remove.region.name"));
+        var row3 = new KeyboardRow();
+        row3.add(readProperty("settings.button.back.name"));
+        var keyboardRows = List.of(row1, row2, row3);
+
+        var informationKeyboard = new ReplyKeyboardMarkup();
+        informationKeyboard.setKeyboard(keyboardRows);
+        informationKeyboard.setSelective(true);
+        informationKeyboard.setResizeKeyboard(true);
+        informationKeyboard.setOneTimeKeyboard(false);
+
+        keyboards.put(KeyboardType.SETTINGS, informationKeyboard);
     }
 
 }

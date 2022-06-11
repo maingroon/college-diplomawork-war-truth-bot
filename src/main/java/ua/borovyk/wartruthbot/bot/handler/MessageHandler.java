@@ -21,12 +21,15 @@ public class MessageHandler {
 
     ChatService chatService;
 
+    QuestionMessageHandler questionMessageHandler;
+
     SettingsMessageHandler settingsMessageHandler;
 
     public BotApiMethod<?> handleMessage(Message message) {
         var keyboardType = chatService.getChatKeyboardType(message.getChatId());
         return switch (keyboardType) {
             case MAIN -> handleMainKeyboard(message);
+            case QUESTION -> questionMessageHandler.handleMessage(message);
             case SETTINGS -> settingsMessageHandler.handleMessage(message);
         };
     }
@@ -47,8 +50,8 @@ public class MessageHandler {
             return handleMainJournalism(message);
         } else if (messageText.equals(readProperty("main.button.displaced.name"))) {
             return handleMainDisplaced(message);
-        } else if (messageText.equals(readProperty("main.button.ato.name"))) {
-            return handleMainAto(message);
+        } else if (messageText.equals(readProperty("main.button.question.name"))) {
+            return handleMainQuestion(message);
         } else if (messageText.equals(readProperty("main.button.about.name"))) {
             return handleMainAbout(message);
         } else if (messageText.equals(readProperty("main.button.settings.name"))) {
@@ -114,11 +117,11 @@ public class MessageHandler {
         );
     }
 
-    private BotApiMethod<?> handleMainAto(Message message) {
+    private BotApiMethod<?> handleMainQuestion(Message message) {
         return sendMessageWithKeyboard(
                 message.getChatId(),
-                readProperty("main.button.ato.text"),
-                KeyboardType.MAIN
+                readProperty("main.button.question.text"),
+                KeyboardType.QUESTION
         );
     }
 

@@ -7,6 +7,7 @@ import lombok.Setter;
 import lombok.ToString;
 import lombok.experimental.FieldDefaults;
 import ua.borovyk.wartruthbot.constant.MessageType;
+import ua.borovyk.wartruthbot.util.LocalDateTimeUtil;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -17,6 +18,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 @Getter
@@ -48,6 +50,9 @@ public class Message {
     @ManyToOne
     @JoinColumn(name = "responder_id")
     Account responder;
+
+    @Column(name = "date_created", nullable = false)
+    LocalDateTime dateCreated = LocalDateTimeUtil.now();
 
     @Override
     public boolean equals(Object o) {
