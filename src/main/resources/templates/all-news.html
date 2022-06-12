@@ -9,14 +9,15 @@
 </head>
 <body>
 <nav th:replace="fragments/header :: header"></nav>
-<div class="container">
+<div class="container text-center">
+    <a class="btn btn-primary mt-3" th:href="@{/cp/news/create}">Додати новину</a>
     <div class="pt-3 pb-3" th:each="news : ${newsList}">
-        <div class="card text-center">
+        <div class="card">
             <div class="card-header" th:text="${news.title}"></div>
             <div class="card-body">
                 <p class="card-text" th:text="${news.content}" style="white-space: pre-wrap"></p>
                 <p class="card-text">
-                    Обрані регіони: <span th:each="topic, status: ${news.topics}">
+                    Обрані теми: <span th:each="topic, status: ${news.topics}">
                         <span th:text="${topic.value}"></span><span th:if="${#sets.size(news.topics)} != (${status.index} + 1)">, </span>
                     </span>
                 </p>

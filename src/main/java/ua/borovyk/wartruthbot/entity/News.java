@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 import lombok.experimental.FieldDefaults;
+import org.springframework.format.annotation.DateTimeFormat;
 import ua.borovyk.wartruthbot.constant.NewsRegion;
 import ua.borovyk.wartruthbot.constant.NewsTopic;
 import ua.borovyk.wartruthbot.util.LocalDateTimeUtil;
@@ -49,6 +50,7 @@ public class News {
     @Column(nullable = false)
     boolean published = false;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
     @Column(name = "publish_date", nullable = false)
     LocalDateTime publishDate = LocalDateTimeUtil.now();
 

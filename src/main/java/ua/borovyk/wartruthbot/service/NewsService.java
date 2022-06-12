@@ -17,6 +17,7 @@ import ua.borovyk.wartruthbot.repository.NewsRepository;
 import ua.borovyk.wartruthbot.util.LocalDateTimeUtil;
 
 import java.util.List;
+import java.util.Objects;
 
 @Service
 @AllArgsConstructor
@@ -65,6 +66,22 @@ public class NewsService {
 
     public List<News> listOfSortedNews(Sort.Direction direction, String property) {
         return newsRepository.findAll(Sort.by(direction, property));
+    }
+
+    public News getNewsById(Long newsId) {
+        Objects.requireNonNull(newsId);
+        return newsRepository.findById(newsId)
+                .orElseThrow();
+    }
+
+    public void saveNews(News news) {
+        Objects.requireNonNull(news);
+        newsRepository.save(news);
+    }
+
+    public void deleteNews(Long newsId) {
+        Objects.requireNonNull(newsId);
+        newsRepository.deleteById(newsId);
     }
 
 }

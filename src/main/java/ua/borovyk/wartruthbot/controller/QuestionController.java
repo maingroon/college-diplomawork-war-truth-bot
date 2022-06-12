@@ -35,12 +35,12 @@ public class QuestionController {
     }
 
     @GetMapping("/{id}")
-    public String getQuestion(Model model,
-                              @PathVariable("id") Long questionId) {
+    public String replyQuestion(Model model,
+                                @PathVariable("id") Long questionId) {
         var question = messageService.getQuestionById(questionId);
         model.addAttribute("question", question);
         model.addAttribute("reply", new Message());
-        return "get-question";
+        return "reply-question";
     }
 
     @PostMapping("/{id}")

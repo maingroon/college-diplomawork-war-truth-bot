@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Додати новину</title>
+    <title>Редагувати новину</title>
     <link th:href="@{/icon.png}" rel="icon">
     <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
 </head>
@@ -10,15 +10,15 @@
 <nav th:replace="fragments/header :: header"></nav>
 <div class="container">
     <div class="card text-center mt-5 mb-5">
-        <form class="align-middle" th:object="${news}" th:action="@{/cp/news/create}" method="post">
+        <form class="align-middle" th:object="${news}" th:action="@{'/cp/news/' + ${news.id} + '/edit'}" method="post">
             <div class="card-header input-group mb-3">
                 <span class="input-group-text" id="input-title">Назва</span>
-                <input type="text" class="form-control" th:field="*{title}"
+                <input type="text" class="form-control" th:field="*{title}" th:value="*{title}"
                        aria-describedby="input-title" required>
             </div>
             <div class="card-body">
                 <div class="form-floating pb-2">
-                    <textarea class="form-control" th:field="*{content}"
+                    <textarea class="form-control" th:field="*{content}" th:value="*{content}"
                               placeholder="Напишіть вашу відповідь" id="floatingTextarea"
                               style="height: 100px" required></textarea>
                     <label for="floatingTextarea">Контент</label>
@@ -28,7 +28,8 @@
                     <select class="form-select" th:field="*{topics}" multiple style="height: 150px">
                         <option th:each="topic : ${allTopics}"
                                 th:value="${{topic}}"
-                                th:text="${topic.value}">
+                                th:text="${topic.value}"
+                                th:selected="${#lists.contains(news.topics, topic)}">
                         </option>
                     </select>
                 </p>
@@ -37,7 +38,8 @@
                     <select class="form-select" th:field="*{regions}" multiple style="height: 300px">
                         <option th:each="region : ${allRegions}"
                                 th:value="${{region}}"
-                                th:text="${region.genitive}">
+                                th:text="${region.genitive}"
+                                th:selected="${#lists.contains(news.regions, region)}">
                         </option>
                     </select>
                 </p>
@@ -46,7 +48,7 @@
                     <input type="datetime-local" class="form-control" th:field="*{publishDate}"
                            th:value="*{publishDate}" aria-describedby="input-date" required>
                 </div>
-                <button type="submit" class="btn btn-primary">Додати</button>
+                <button type="submit" class="btn btn-primary">Редагувати</button>
             </div>
         </form>
     </div>
