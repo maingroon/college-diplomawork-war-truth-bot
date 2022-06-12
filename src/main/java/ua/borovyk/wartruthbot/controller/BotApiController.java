@@ -24,7 +24,7 @@ public class BotApiController {
 
     TelegramBot telegramBot;
 
-    @GetMapping
+    @PostMapping
     public BotApiMethod<?> onUpdateReceived(@RequestBody Update update) {
         return telegramBot.onWebhookUpdateReceived(update);
     }
