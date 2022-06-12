@@ -94,7 +94,7 @@ public class MessageHandler {
         return sendMessageWithKeyboard(
                 message.getChatId(),
                 readProperty("main.button.dictionary.text"),
-                KeyboardType.MAIN
+                KeyboardType.DICTIONARY
         );
     }
 
@@ -102,7 +102,7 @@ public class MessageHandler {
         return sendMessageWithKeyboard(
                 message.getChatId(),
                 readProperty("main.button.testing.text"),
-                KeyboardType.MAIN
+                KeyboardType.TESTING
         );
     }
 
@@ -110,7 +110,7 @@ public class MessageHandler {
         return sendMessageWithKeyboard(
                 message.getChatId(),
                 readProperty("main.button.video.text"),
-                KeyboardType.MAIN
+                KeyboardType.VIDEO
         );
     }
 
@@ -118,7 +118,7 @@ public class MessageHandler {
         return sendMessageWithKeyboard(
                 message.getChatId(),
                 readProperty("main.button.safety.text"),
-                KeyboardType.MAIN
+                KeyboardType.SAFETY
         );
     }
 
@@ -126,7 +126,7 @@ public class MessageHandler {
         return sendMessageWithKeyboard(
                 message.getChatId(),
                 readProperty("main.button.journalism.text"),
-                KeyboardType.MAIN
+                KeyboardType.JOURNALISM
         );
     }
 
@@ -134,7 +134,7 @@ public class MessageHandler {
         return sendMessageWithKeyboard(
                 message.getChatId(),
                 readProperty("main.button.displaced.text"),
-                KeyboardType.MAIN
+                KeyboardType.DISPLACED
         );
     }
 
