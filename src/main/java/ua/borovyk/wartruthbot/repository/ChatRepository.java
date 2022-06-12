@@ -17,7 +17,7 @@ public interface ChatRepository extends JpaRepository<Chat, Long> {
 
 
     @Query("""
-        SELECT chat FROM Chat chat
+        SELECT DISTINCT chat FROM Chat chat
             LEFT JOIN chat.selectedTopics topics
             LEFT JOIN chat.selectedRegions regions
         WHERE chat.status = ?1
