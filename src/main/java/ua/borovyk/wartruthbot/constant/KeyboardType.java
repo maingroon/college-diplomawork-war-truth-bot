@@ -9,6 +9,13 @@ import lombok.experimental.FieldDefaults;
 public enum KeyboardType {
 
     MAIN,
+    PSYCHOLOGICAL,
+//    DICTIONARY,
+//    TESTING,
+//    VIDEO,
+//    SAFETY,
+//    JOURNALISM,
+//    DISPLACED,
     QUESTION,
     SETTINGS,
 

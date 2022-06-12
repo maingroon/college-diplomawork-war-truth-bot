@@ -21,6 +21,8 @@ public class MessageHandler {
 
     ChatService chatService;
 
+    PsychologicalMesssageHandler psychologicalMesssageHandler;
+
     QuestionMessageHandler questionMessageHandler;
 
     SettingsMessageHandler settingsMessageHandler;
@@ -29,6 +31,7 @@ public class MessageHandler {
         var keyboardType = chatService.getChatKeyboardType(message.getChatId());
         return switch (keyboardType) {
             case MAIN -> handleMainKeyboard(message);
+            case PSYCHOLOGICAL -> psychologicalMesssageHandler.handleMessage(message);
             case QUESTION -> questionMessageHandler.handleMessage(message);
             case SETTINGS -> settingsMessageHandler.handleMessage(message);
         };
@@ -65,7 +68,7 @@ public class MessageHandler {
         return sendMessageWithKeyboard(
                 message.getChatId(),
                 readProperty("main.button.psychological.text"),
-                KeyboardType.MAIN
+                KeyboardType.PSYCHOLOGICAL
         );
     }
 

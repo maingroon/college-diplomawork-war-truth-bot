@@ -23,6 +23,7 @@ public class KeyboardHolder {
         if (!keyboards.containsKey(type)) {
             switch (type) {
                 case MAIN -> createMainKeyboard();
+                case PSYCHOLOGICAL -> createPsychologicalKeyboard();
                 case QUESTION -> createQuestionKeyboard();
                 case SETTINGS -> createSettingsKeyboard();
             }
@@ -55,6 +56,28 @@ public class KeyboardHolder {
         mainKeyboard.setOneTimeKeyboard(false);
 
         keyboards.put(KeyboardType.MAIN, mainKeyboard);
+    }
+
+    private static void createPsychologicalKeyboard() {
+        var row1 = new KeyboardRow();
+        row1.add(readProperty("psychological.button.child.help.name"));
+        var row2 = new KeyboardRow();
+        row2.add(readProperty("psychological.button.steps.help.name"));
+        var row3 = new KeyboardRow();
+        row3.add(readProperty("psychological.button.stress.name"));
+        var row4 = new KeyboardRow();
+        row4.add(readProperty("psychological.button.together.name"));
+        var row5 = new KeyboardRow();
+        row5.add(readProperty("psychological.button.back.name\""));
+        var keyboardRows = List.of(row1, row2, row3, row4, row5);
+
+        var psychologicalKeyboard = new ReplyKeyboardMarkup();
+        psychologicalKeyboard.setKeyboard(keyboardRows);
+        psychologicalKeyboard.setSelective(true);
+        psychologicalKeyboard.setResizeKeyboard(true);
+        psychologicalKeyboard.setOneTimeKeyboard(false);
+
+        keyboards.put(KeyboardType.PSYCHOLOGICAL, psychologicalKeyboard);
     }
 
     private static void createQuestionKeyboard() {
