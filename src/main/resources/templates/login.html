@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link th:href="@{/icon.png}" rel="icon">
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{/css/signin.css}" rel="stylesheet">
+</head>
+<body>
+<div class="container">
+
+    <form class="form-signin align-middle mt-5 pt-5" th:action="@{/cp/login}" method="post">
+        <h2 class="form-heading text-center">Вхід</h2>
+
+        <div class="form-group text-center d-grid">
+            <input name="username" type="text" class="form-control" placeholder="Імʼя" autofocus="true"/>
+            <input name="password" type="password" class="form-control" placeholder="Пароль"/>
+
+            <div th:if="${param.error}">
+                <br>
+                <div class="alert alert-danger">
+                    Не правильне імʼя або пароль.
+                </div>
+            </div>
+            <div th:if="${param.logout}">
+                <br>
+                <div class="alert alert-info">
+                    Ви успішно вийшли.
+                </div>
+            </div>
+
+            <button class="btn btn-primary btn-block" type="submit">Увійти</button>
+        </div>
+    </form>
+
+</div>
+<script th:src="@{/js/bootstrap.min.js}"></script>
+</body>
+</html>

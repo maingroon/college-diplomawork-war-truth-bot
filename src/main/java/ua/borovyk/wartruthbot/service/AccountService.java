@@ -26,7 +26,7 @@ public class AccountService {
 
     RoleRepository roleRepository;
 
-    BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+    BCryptPasswordEncoder passwordEncoder;
 
     public void createDefaultMe() {
         createRoles();

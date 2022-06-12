@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Register new moderator</title>
+    <link th:href="@{/icon.png}" rel="icon">
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{/css/signin.css}" rel="stylesheet">
+</head>
+<body>
+<nav th:replace="fragments/header :: header"></nav>
+<div class="container">
+    <form class="form-signin align-middle mt-5 pt-5" th:action="@{/cp/moderator/register}" method="post">
+        <h2 class="form-heading text-center">Додати модератора</h2>
+        <div class="form-group text-center d-grid">
+            <input name="username" type="text" class="form-control" placeholder="Імʼя" autofocus="true"/>
+            <input name="password" type="password" class="form-control" placeholder="Пароль"/>
+
+            <div th:if="${param.error}">
+                <div class="alert alert-danger">
+                    Користувач з таким іменем вже існує.
+                </div>
+            </div>
+
+            <button class="btn btn-primary btn-block" type="submit">Додати</button>
+        </div>
+    </form>
+</div>
+<footer th:replace="fragments/footer :: footer"></footer>
+<script th:src="@{/js/bootstrap.min.js}"></script>
+</body>
+</html>

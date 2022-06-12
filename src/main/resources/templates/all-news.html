@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Список новин</title>
+    <link th:href="@{/icon.png}" rel="icon">
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+</head>
+<body>
+<nav th:replace="fragments/header :: header"></nav>
+<div class="container">
+    <div class="pt-3 pb-3" th:each="news : ${newsList}">
+        <div class="card text-center">
+            <div class="card-header" th:text="${news.title}"></div>
+            <div class="card-body">
+                <p class="card-text" th:text="${news.content}" style="white-space: pre-wrap"></p>
+                <p class="card-text">
+                    Обрані регіони: <span th:each="topic, status: ${news.topics}">
+                        <span th:text="${topic.value}"></span><span th:if="${#sets.size(news.topics)} != (${status.index} + 1)">, </span>
+                    </span>
+                </p>
+                <p class="card-text">
+                    Обрані регіони: <span th:each="region, status: ${news.regions}">
+                        <span th:text="${region.genitive}"></span><span th:if="${#sets.size(news.regions)} != (${status.index} + 1)">, </span>
+                    </span>
+                </p>
+                <p class="card-text" th:text="'Дата для публікації: ' + ${#temporals.format(news.publishDate, 'dd.MM.yyyy HH:mm')}"></p>
+                <a th:href="@{'/cp/news/' + ${news.id} + '/edit'}" class="btn btn-primary">Редагувати</a>
+            </div>
+        </div>
+    </div>
+</div>
+<footer th:replace="fragments/footer :: footer"></footer>
+<script th:src="@{/js/bootstrap.min.js}"></script>
+</body>
+</html>

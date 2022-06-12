@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
@@ -14,6 +15,8 @@ import ua.borovyk.wartruthbot.entity.News;
 import ua.borovyk.wartruthbot.repository.ChatRepository;
 import ua.borovyk.wartruthbot.repository.NewsRepository;
 import ua.borovyk.wartruthbot.util.LocalDateTimeUtil;
+
+import java.util.List;
 
 @Service
 @AllArgsConstructor
@@ -58,6 +61,10 @@ public class NewsService {
                     }
                     return 1;
                 }).sum();
+    }
+
+    public List<News> listOfSortedNews(Sort.Direction direction, String property) {
+        return newsRepository.findAll(Sort.by(direction, property));
     }
 
 }

@@ -1,0 +1,11 @@
+# docker-compose.yml
+version: '3'
+services:
+  database:
+    image: 'postgres:14'
+    ports:
+      - '5432:5432'
+    environment:
+      POSTGRES_USER: 'maingroon'
+      POSTGRES_PASSWORD: 'password' # The PostgreSQL password (useful to connect to the database)
+      POSTGRES_DB: 'war-truth-bot'

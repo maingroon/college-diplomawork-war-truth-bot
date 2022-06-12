@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Список запитань</title>
+    <link th:href="@{/icon.png}" rel="icon">
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+</head>
+<body>
+<nav th:replace="fragments/header :: header"></nav>
+<div class="container">
+    <div class="pt-3 pb-3" th:each="question : ${questions}">
+        <div class="card text-center">
+            <div class="card-body">
+                <p class="card-text" th:text="${question.content}" style="white-space: pre-wrap"></p>
+                <a th:href="@{'/cp/questions/' + ${question.id}}" class="btn btn-primary">Відповісти на запитання</a>
+            </div>
+        </div>
+    </div>
+</div>
+<footer th:replace="fragments/footer :: footer"></footer>
+<script th:src="@{/js/bootstrap.min.js}"></script>
+</body>
+</html>

@@ -9,6 +9,8 @@ import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Message;
 import ua.borovyk.wartruthbot.bot.keyboard.KeyboardHolder;
 import ua.borovyk.wartruthbot.constant.KeyboardType;
+import ua.borovyk.wartruthbot.constant.MessageType;
+import ua.borovyk.wartruthbot.repository.MessageRepository;
 import ua.borovyk.wartruthbot.service.ChatService;
 import ua.borovyk.wartruthbot.service.MessageService;
 
@@ -21,7 +23,7 @@ class QuestionMessageHandler {
 
     ChatService chatService;
 
-    MessageService messageService;
+    MessageRepository messageRepository;
 
     public BotApiMethod<?> handleMessage(Message message) {
         var messageText = message.getText();
@@ -33,11 +35,17 @@ class QuestionMessageHandler {
     }
 
     private BotApiMethod<?> handleQuestion(Message message) {
-        messageService.addQuestion(message.getChatId(), message.getText());
+        var chat = chatService.getChatById(message.getChatId());
+        var question = new ua.borovyk.wartruthbot.entity.Message();
+        question.setChat(chat);
+        question.setContent(message.getText());
+        question.setType(MessageType.QUESTION);
+        messageRepository.save(question);
+
         return sendMessage(
                 message.getChatId(),
                 readProperty("question.process.text"),
-                KeyboardType.SETTINGS
+                KeyboardType.QUESTION
         );
     }
 

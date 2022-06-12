@@ -12,8 +12,10 @@ spring:
     hibernate:
       ddl-auto: 'update'
   datasource:
-    platform: 'postgres'
     url: 'jdbc:postgresql://ec2-52-214-23-110.eu-west-1.compute.amazonaws.com:5432/deds9gqlco5560'
     username: 'kanynpldywuhog'
     password: '90c9879c0517a2e08d2b8e85a3eae6fbc18dd58309e3af3f7b592e767af38169'
+#    url: 'jdbc:postgresql://localhost:5432/war-truth-bot'
+#    username: 'maingroon'
+#    password: 'password'
     driverClassName: 'org.postgresql.Driver'

@@ -1,0 +1,32 @@
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity">
+<head>
+    <link th:href="@{/icon.png}" rel="icon">
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+</head>
+<body>
+<nav class="navbar navbar-expand navbar-dark bg-primary" th:fragment="header">
+    <div class="container">
+        <div class="collapse navbar-collapse justify-content-md-center" id="navbarNavDropdown">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a th:class="'nav-link' + (${#httpServletRequest.requestURI == '/cp' ? ' active' : ''})" th:href="@{/cp}">Головна сторінка</a>
+                </li>
+                <li class="nav-item">
+                    <a th:class="'nav-link' + (${#httpServletRequest.requestURI == '/cp/news' ? ' active' : ''})" th:href="@{/cp/news}">Новини</a>
+                </li>
+                <li class="nav-item">
+                    <a th:class="'nav-link' + (${#httpServletRequest.requestURI == '/cp/questions' ? ' active' : ''})" th:href="@{/cp/questions}">Запитання</a>
+                </li>
+                <li sec:authorize="hasAuthority('ADMIN')" class="nav-item">
+                    <a th:class="'nav-link' + (${#httpServletRequest.requestURI == '/cp/moderator/register' ? ' active' : ''})" th:href="@{/cp/moderator/register}">Додати модератора</a>
+                </li>
+                <li sec:authorize="isAuthenticated()" class="nav-item">
+                    <a th:class="'nav-link'" th:href="@{/cp/logout}">Вийти</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+</body>
+</html>
