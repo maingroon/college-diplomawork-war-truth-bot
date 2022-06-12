@@ -54,6 +54,7 @@ public class QuestionController {
         var question = messageService.getQuestionById(questionId);
         question.setResponder(currentUser);
 
+        reply.setId(null);
         reply.setResponder(currentUser);
         reply.setType(MessageType.ANSWER);
         reply.setChat(question.getChat());
@@ -62,7 +63,7 @@ public class QuestionController {
         messageService.sendQuestionReply(reply);
         messageService.saveMessage(question);
 
-        return "redirect: all-questions";
+        return "redirect:/cp/questions";
     }
 
 }
