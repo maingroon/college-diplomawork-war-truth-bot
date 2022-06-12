@@ -23,6 +23,18 @@ public class MessageHandler {
 
     PsychologicalMesssageHandler psychologicalMesssageHandler;
 
+    DictionaryMesssageHandler dictionaryMesssageHandler;
+
+    TestingMesssageHandler testingMesssageHandler;
+
+    VideoMesssageHandler videoMesssageHandler;
+
+    SafetyMesssageHandler safetyMesssageHandler;
+
+    JournalismMesssageHandler journalismMesssageHandler;
+
+    DisplacedMesssageHandler displacedMesssageHandler;
+
     QuestionMessageHandler questionMessageHandler;
 
     SettingsMessageHandler settingsMessageHandler;
@@ -32,6 +44,12 @@ public class MessageHandler {
         return switch (keyboardType) {
             case MAIN -> handleMainKeyboard(message);
             case PSYCHOLOGICAL -> psychologicalMesssageHandler.handleMessage(message);
+            case DICTIONARY -> dictionaryMesssageHandler.handleMessage(message);
+            case TESTING -> testingMesssageHandler.handleMessage(message);
+            case VIDEO -> videoMesssageHandler.handleMessage(message);
+            case SAFETY -> safetyMesssageHandler.handleMessage(message);
+            case JOURNALISM -> journalismMesssageHandler.handleMessage(message);
+            case DISPLACED -> displacedMesssageHandler.handleMessage(message);
             case QUESTION -> questionMessageHandler.handleMessage(message);
             case SETTINGS -> settingsMessageHandler.handleMessage(message);
         };
