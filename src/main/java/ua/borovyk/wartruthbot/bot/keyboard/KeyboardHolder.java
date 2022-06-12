@@ -68,7 +68,7 @@ public class KeyboardHolder {
         var row4 = new KeyboardRow();
         row4.add(readProperty("psychological.button.together.name"));
         var row5 = new KeyboardRow();
-        row5.add(readProperty("psychological.button.back.name\""));
+        row5.add(readProperty("psychological.button.back.name"));
         var keyboardRows = List.of(row1, row2, row3, row4, row5);
 
         var psychologicalKeyboard = new ReplyKeyboardMarkup();
