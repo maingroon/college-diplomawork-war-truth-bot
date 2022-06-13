@@ -38,9 +38,4 @@ public class AccountController {
         return "login";
     }
 
-    @GetMapping
-    public String main(Model model) {
-        return "main";
-    }
-
 }
