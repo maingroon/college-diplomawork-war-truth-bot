@@ -3,6 +3,8 @@ package ua.borovyk.wartruthbot.bot.handler;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.methods.BotApiMethod;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
@@ -19,6 +21,8 @@ import ua.borovyk.wartruthbot.util.PropertyReader;
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class ActionHandler {
 
+    Logger log = LoggerFactory.getLogger(ActionHandler.class);
+
     static String JOIN = "member";
     static String LEFT = "kicked";
 
@@ -28,6 +32,7 @@ public class ActionHandler {
         var status = chatMember.getNewChatMember().getStatus();
         var chatId = chatMember.getChat().getId();
         var chat = chatService.getChatById(chatId);
+        log.info("Status: {}", status);
 
         if (JOIN.equals(status)) {
             chat.setStatus(ChatStatus.ACTIVE);
