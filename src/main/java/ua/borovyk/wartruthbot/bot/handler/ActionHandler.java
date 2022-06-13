@@ -29,15 +29,12 @@ public class ActionHandler {
     ChatService chatService;
 
     public BotApiMethod<?> handleAction(ChatMemberUpdated chatMember) {
+        log.info("{}", chatMember);
         var status = chatMember.getNewChatMember().getStatus();
         var chatId = chatMember.getChat().getId();
         var chat = chatService.getChatById(chatId);
 
-        if (LEFT.equals(status)) {
-            chat.setStatus(ChatStatus.STOPPED);
-            chatService.updateChat(chat);
-            return null;
-        } else {
+        if (JOIN.equals(status)) {
             chat.setStatus(ChatStatus.ACTIVE);
             chat.setCurrentKeyboard(KeyboardType.MAIN);
             chatService.updateChat(chat);
@@ -46,7 +43,11 @@ public class ActionHandler {
                     .text(PropertyReader.readProperty("main.greetings.text"))
                     .replyMarkup(KeyboardHolder.getKeyboardByType(KeyboardType.MAIN))
                     .build();
+        } else if (LEFT.equals(status)) {
+            chat.setStatus(ChatStatus.STOPPED);
+            chatService.updateChat(chat);
         }
+        return null;
     }
 
 }
