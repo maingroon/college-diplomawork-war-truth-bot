@@ -4,6 +4,9 @@ import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
 
+import java.util.Arrays;
+import java.util.List;
+
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PUBLIC, makeFinal = true)
 public enum NewsRegion {
@@ -12,7 +15,7 @@ public enum NewsRegion {
     CR("Автономна Республіка Крим", "Автономна Республіка Крим"),
     CH("Чернігів", "Чернігівська"),
     CV("Чернівці", "Чернівецька"),
-    DP("Дніпропетрвовськ", "Дніпропетровська"),
+    DP("Дніпропетровськ", "Дніпропетровська"),
     DT("Донецьк", "Донецька"),
     IF("Івано-Франківськ", "Івано-Франківська"),
     KK("Харків", "Харківська"),
