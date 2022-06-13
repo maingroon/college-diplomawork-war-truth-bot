@@ -197,7 +197,7 @@ public class MessageHandler {
     private BotApiMethod<?> handleNewChat(Message message) {
         return sendMessageWithKeyboard(
                 message.getChatId(),
-                "main.greetings.text",
+                readProperty("main.greetings.text"),
                 KeyboardType.MAIN
         );
     }
