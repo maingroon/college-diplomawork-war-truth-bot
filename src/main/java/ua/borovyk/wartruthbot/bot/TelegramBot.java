@@ -24,8 +24,6 @@ public class TelegramBot extends SpringWebhookBot {
 
     Logger log = LoggerFactory.getLogger(TelegramBot.class);
 
-    String START_MESSAGE = "/start";
-
     @Getter
     @NonFinal
     @Value("${telegram.bot.username}")
@@ -68,8 +66,7 @@ public class TelegramBot extends SpringWebhookBot {
     }
 
     private BotApiMethod<?> handleUpdate(Update update) {
-        if (update.hasMyChatMember() ||
-                (!update.hasMyChatMember()) && START_MESSAGE.equals(update.getMessage().getText())) {
+        if (update.hasMyChatMember()) {
             return actionHandler.handleAction(update.getMyChatMember());
         } else if (update.hasCallbackQuery()) {
             return callbackHandler.handleCallback(update.getCallbackQuery());

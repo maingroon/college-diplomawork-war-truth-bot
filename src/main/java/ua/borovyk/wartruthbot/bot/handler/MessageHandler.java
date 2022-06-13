@@ -8,8 +8,11 @@ import org.telegram.telegrambots.meta.api.methods.BotApiMethod;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Message;
 import ua.borovyk.wartruthbot.bot.keyboard.KeyboardHolder;
+import ua.borovyk.wartruthbot.constant.ChatStatus;
 import ua.borovyk.wartruthbot.constant.KeyboardType;
+import ua.borovyk.wartruthbot.entity.Chat;
 import ua.borovyk.wartruthbot.service.ChatService;
+import ua.borovyk.wartruthbot.util.PropertyReader;
 
 import static java.util.stream.Collectors.joining;
 import static ua.borovyk.wartruthbot.util.PropertyReader.readProperty;
@@ -77,6 +80,8 @@ public class MessageHandler {
             return handleMainAbout(message);
         } else if (messageText.equals(readProperty("main.button.settings.name"))) {
             return handleMainSettings(message);
+        } else if (messageText.equals("/start")) {
+            return handleNewChat(message);
         } else {
             return null;
         }
@@ -186,6 +191,14 @@ public class MessageHandler {
                 chatId,
                 formattedText,
                 KeyboardType.SETTINGS
+        );
+    }
+
+    private BotApiMethod<?> handleNewChat(Message message) {
+        return sendMessageWithKeyboard(
+                message.getChatId(),
+                "main.greetings.text",
+                KeyboardType.MAIN
         );
     }
 

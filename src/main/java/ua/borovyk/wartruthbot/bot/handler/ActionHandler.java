@@ -29,7 +29,6 @@ public class ActionHandler {
     ChatService chatService;
 
     public BotApiMethod<?> handleAction(ChatMemberUpdated chatMember) {
-        log.info("{}", chatMember);
         var status = chatMember.getNewChatMember().getStatus();
         var chatId = chatMember.getChat().getId();
         var chat = chatService.getChatById(chatId);
