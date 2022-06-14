@@ -37,11 +37,6 @@ public class ActionHandler {
             chat.setStatus(ChatStatus.ACTIVE);
             chat.setCurrentKeyboard(KeyboardType.MAIN);
             chatService.updateChat(chat);
-            return SendMessage.builder()
-                    .chatId(chatId.toString())
-                    .text(PropertyReader.readProperty("main.greetings.text"))
-                    .replyMarkup(KeyboardHolder.getKeyboardByType(KeyboardType.MAIN))
-                    .build();
         } else if (LEFT.equals(status)) {
             chat.setStatus(ChatStatus.STOPPED);
             chatService.updateChat(chat);
