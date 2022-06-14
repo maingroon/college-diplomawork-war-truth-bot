@@ -22,6 +22,8 @@ import static ua.borovyk.wartruthbot.util.PropertyReader.readProperty;
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class MessageHandler {
 
+    String START_MESSAGE = "/start";
+
     ChatService chatService;
 
     PsychologicalMesssageHandler psychologicalMesssageHandler;
@@ -43,6 +45,10 @@ public class MessageHandler {
     SettingsMessageHandler settingsMessageHandler;
 
     public BotApiMethod<?> handleMessage(Message message) {
+        if (START_MESSAGE.equals(message.getText())) {
+            return handleStart(message);
+        }
+
         var keyboardType = chatService.getChatKeyboardType(message.getChatId());
         return switch (keyboardType) {
             case MAIN -> handleMainKeyboard(message);
@@ -80,8 +86,6 @@ public class MessageHandler {
             return handleMainAbout(message);
         } else if (messageText.equals(readProperty("main.button.settings.name"))) {
             return handleMainSettings(message);
-        } else if (messageText.equals("/start")) {
-            return handleNewChat(message);
         } else {
             return null;
         }
@@ -194,7 +198,7 @@ public class MessageHandler {
         );
     }
 
-    private BotApiMethod<?> handleNewChat(Message message) {
+    private BotApiMethod<?> handleStart(Message message) {
         return sendMessageWithKeyboard(
                 message.getChatId(),
                 readProperty("main.greetings.text"),
