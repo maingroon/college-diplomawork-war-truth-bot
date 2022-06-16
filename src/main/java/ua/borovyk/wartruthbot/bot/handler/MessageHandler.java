@@ -25,23 +25,14 @@ public class MessageHandler {
     String START_MESSAGE = "/start";
 
     ChatService chatService;
-
     PsychologicalMesssageHandler psychologicalMesssageHandler;
-
     DictionaryMesssageHandler dictionaryMesssageHandler;
-
     TestingMesssageHandler testingMesssageHandler;
-
     VideoMesssageHandler videoMesssageHandler;
-
     SafetyMesssageHandler safetyMesssageHandler;
-
     JournalismMesssageHandler journalismMesssageHandler;
-
     DisplacedMesssageHandler displacedMesssageHandler;
-
     QuestionMessageHandler questionMessageHandler;
-
     SettingsMessageHandler settingsMessageHandler;
 
     public BotApiMethod<?> handleMessage(Message message) {

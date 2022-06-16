@@ -11,6 +11,10 @@
 <div class="container">
     <div class="card text-center mt-5 mb-5">
         <form class="align-middle" th:object="${news}" th:action="@{/cp/news/create}" method="post">
+            <div th:each="errorMessage: ${errorMessages}">
+                <div class="text-danger" th:text="${errorMessage}"></div>
+                <br>
+            </div>
             <div class="card-header input-group mb-3">
                 <span class="input-group-text" id="input-title">Назва</span>
                 <input type="text" class="form-control" th:field="*{title}"

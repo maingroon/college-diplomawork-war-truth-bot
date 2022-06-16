@@ -20,8 +20,6 @@ import ua.borovyk.wartruthbot.bot.TelegramBot;
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class BotApiController {
 
-    Logger log = LoggerFactory.getLogger(BotApiController.class);
-
     TelegramBot telegramBot;
 
     @PostMapping

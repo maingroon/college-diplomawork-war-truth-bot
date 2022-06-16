@@ -24,26 +24,11 @@ public class MessageService {
     Logger log = LoggerFactory.getLogger(MessageService.class);
 
     TelegramBot telegramBot;
-
     MessageRepository messageRepository;
-
-    ChatService chatService;
 
     public void saveMessage(Message message) {
         Objects.requireNonNull(message);
         messageRepository.save(message);
-    }
-
-    public void addQuestion(Long chatId, String content) {
-        Objects.requireNonNull(chatId);
-        Objects.requireNonNull(content);
-
-        var chat = chatService.getChatById(chatId);
-        var question = new Message();
-        question.setChat(chat);
-        question.setContent(content);
-        question.setType(MessageType.QUESTION);
-        messageRepository.save(question);
     }
 
     public Message getQuestionById(Long questionId) {

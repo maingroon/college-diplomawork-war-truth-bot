@@ -26,10 +26,14 @@
                         <span th:text="${region.genitive}"></span><span th:if="${#sets.size(news.regions)} != (${status.index} + 1)">, </span>
                     </span>
                 </p>
+                <p class="card-text" th:text="'Статус: ' + ${news.published ? 'опубліковано' : 'не опубліковано'}"></p>
                 <p class="card-text" th:text="'Дата для публікації: ' + ${#temporals.format(news.publishDate, 'dd.MM.yyyy HH:mm')}"></p>
                 <a th:href="@{'/cp/news/' + ${news.id} + '/edit'}" class="btn btn-primary">Редагувати</a>
             </div>
         </div>
+    </div>
+    <div class="text-success pt-3 pb-3" th:if="${newsList == null || newsList.isEmpty()}">
+        Не має жодної новини
     </div>
 </div>
 <footer th:replace="fragments/footer :: footer"></footer>

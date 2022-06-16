@@ -23,36 +23,8 @@ import java.util.Set;
 public class AccountService {
 
     AccountRepository accountRepository;
-
     RoleRepository roleRepository;
-
     BCryptPasswordEncoder passwordEncoder;
-
-    public void createDefaultMe() {
-        createRoles();
-        var me = accountRepository.findByUsername("maingroon");
-        if (me.isEmpty()) {
-            var newMe = new Account();
-            newMe.setUsername("maingroon");
-            newMe.setPassword(passwordEncoder.encode("password"));
-            var roles = new HashSet<>(roleRepository.findAll());
-            newMe.setRoles(roles);
-            accountRepository.save(newMe);
-        }
-    }
-
-    public void createRoles() {
-        var admin = roleRepository.findByName(RoleType.ADMIN);
-        if (admin.isEmpty()) {
-            var roles = Arrays.stream(RoleType.values())
-                    .map(roleType -> {
-                        var role = new Role();
-                        role.setName(roleType);
-                        return role;
-                    }).toList();
-            roleRepository.saveAll(roles);
-        }
-    }
 
     public void createNewModerator(Account account) {
         Objects.requireNonNull(account);

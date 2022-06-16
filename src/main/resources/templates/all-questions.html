@@ -18,6 +18,9 @@
             </div>
         </div>
     </div>
+    <div class="text-success text-center pt-3 pb-3" th:if="${questions == null || questions.isEmpty()}">
+        Не має жодного актуального запитання
+    </div>
 </div>
 <footer th:replace="fragments/footer :: footer"></footer>
 <script th:src="@{/js/bootstrap.min.js}"></script>
