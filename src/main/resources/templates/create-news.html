@@ -28,7 +28,7 @@
                 </div>
                 <p class="card-text">
                     Обрані теми:
-                    <select class="form-select" th:field="*{topics}" multiple style="height: 150px">
+                    <select class="form-select" th:field="*{topics}" multiple required style="height: 150px">
                         <option th:each="topic : ${allTopics}"
                                 th:value="${{topic}}"
                                 th:text="${topic.value}">
@@ -37,7 +37,7 @@
                 </p>
                 <p class="card-text">
                     Обрані регіони:
-                    <select class="form-select" th:field="*{regions}" multiple style="height: 300px">
+                    <select class="form-select" th:field="*{regions}" multiple required style="height: 300px">
                         <option th:each="region : ${allRegions}"
                                 th:value="${{region}}"
                                 th:text="${region.genitive}">
