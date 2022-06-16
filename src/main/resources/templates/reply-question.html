@@ -13,7 +13,6 @@
         <form class="align-middle" th:object="${reply}" th:action="@{'/cp/questions/' + ${question.id}}" method="post">
             <div th:each="errorMessage: ${errorMessages}">
                 <div class="text-danger" th:text="${errorMessage}"></div>
-                <br>
             </div>
             <div class="card-body">
                 <p class="card-text">

@@ -13,7 +13,6 @@
         <form class="align-middle" th:object="${news}" th:action="@{'/cp/news/' + ${news.id} + '/edit'}" method="post">
             <div th:each="errorMessage: ${errorMessages}">
                 <div class="text-danger" th:text="${errorMessage}"></div>
-                <br>
             </div>
             <div class="card-header input-group mb-3">
                 <span class="input-group-text" id="input-title">Назва</span>
